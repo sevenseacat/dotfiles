@@ -1,0 +1,7 @@
+autoload -U compinit
+compinit
+
+fpath=(~/.zsh/functions $fpath)
+autoload -U ~/.zsh/functions/*(:t)
+
+# load this file in .zshrc - source "$HOME/.zsh/config"
