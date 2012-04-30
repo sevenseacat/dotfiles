@@ -39,7 +39,7 @@ function prompt_karpah_setup {
     	'prompt'  "${s} "'%F{magenta}%b (%c)%f %C%A%B%S%a%d%m%r%U%u '
 
 	PROMPT="
-${s} %F{yellow}%n@%M%f ${s} %F{green}%~%f ${s} %F{blue}"'$(rvm-prompt) ${git_info[prompt]}'"${s}
+${s} %F{yellow}%n@%m%f ${s} %F{green}%~%f ${s} %F{blue}"'$(rvm-prompt) ${git_info[prompt]}'"${s}
 %F{cyan}$%f " 
 	RPROMPT=""
 	SPROMPT="zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? "
