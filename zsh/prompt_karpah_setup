@@ -19,7 +19,8 @@ function prompt_karpah_setup {
 	add-zsh-hook precmd prompt_karpah_precmd
 
 	# Separator
-	local s='%F{cyan}//%f'
+	local s='%F{cyan}:%f'
+	local e='%F{cyan}.%f'
 
 	zstyle ':omz:module:git' action '%%B%F{yellow}%s%f%%b'
 	zstyle ':omz:module:git' added '%%B%F{green}✚%f%%b'
@@ -39,7 +40,7 @@ function prompt_karpah_setup {
     	'prompt'  "${s} "'%F{magenta}%b (%c)%f %C%A%B%S%a%d%m%r%U%u '
 
 	PROMPT="
-${s} %F{yellow}%n@%m%f ${s} %F{green}%~%f ${s} %F{blue}"'$(rvm-prompt) ${git_info[prompt]}'"${s}
+${e}${s} %F{yellow}%n@%m%f ${s} %F{green}%~%f ${s} %F{blue}"'$(rvm-prompt) ${git_info[prompt]}'"${s}${e}
 %F{cyan}$%f " 
 	RPROMPT=""
 	SPROMPT="zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? "
