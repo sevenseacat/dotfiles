@@ -1,0 +1,21 @@
+# sevenseacat prompt theme
+
+git_branch () {
+    if git st &> /dev/null; then
+        echo ' %F{cyan}:%f %F{magenta}'$(git rev-parse --abbrev-ref HEAD)' ('$(git rev-parse --short HEAD)')'
+    fi
+}
+
+prompt_sevenseacat_setup () {
+    local s='%F{cyan}:%f'
+    local e='%F{cyan}.%f'
+    local versions='Ruby $(echo $RUBY_VERSION)'
+
+    #  %F{yellow}%n@%m%f will put the username/host back in
+    PROMPT="
+${e}${s} %F{green}%~%f ${s} %F{blue}${versions}%f"'$(git_branch)'"%f ${s}${e}
+%F{cyan}$%f "
+    RPROMPT="%F{cyan}%t%f"
+}
+
+prompt_sevenseacat_setup "$@"
