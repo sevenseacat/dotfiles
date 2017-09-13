@@ -1,0 +1,45 @@
+[user]
+	name = Rebecca Skinner
+[alias]
+	st = status
+	co = checkout
+	diffc = diff --cached
+	conflicted = diff --name-only --diff-filter=U
+	dsf = "!git diff --color $@ | diff-so-fancy"
+	nuke = "!git branch -vv --no-color | grep -v origin | awk '{print $1}' | xargs git branch -D"
+	freshness = "!f() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:cyan)%(refname:short)%(color:reset) | %(committerdate:relative)%(color:reset) | %(subject)' | column -s '|' -t; }; f"
+[color]
+	ui = always
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red
+	new = green
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = "red bold 52"
+	newNormal = "green"
+	newHighlight = "green bold 22"
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[push]
+	default = current
+[core]
+	editor = nano
+[diff]
+	algorithm = patience
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+[fetch]
+	prune = true
+[interactive]
+	diffFilter = "diff-so-fancy"
