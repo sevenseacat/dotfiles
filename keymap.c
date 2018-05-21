@@ -70,8 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Tab    |   Q  |   W  |   F  |   P  |   G  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |   \|   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BS/Ctrl|   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |   N  |   E  |   I  |   O  | '"/L3  |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * | BS/L2  |   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |   N  |   E  |   I  |   O  | '"/L3  |
+ * |--------+------+------+------+------+------| Ctrl |           |      |------+------+------+------+------+--------|
  * | LShift(|   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |   /  |RShift) |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | Esc  |      |      | Left | Right|                                       |  Up  | Down |      |      |      |
@@ -85,11 +85,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [BASE] = LAYOUT_ergodox(
-       KC_GRAVE,       KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   LCMD(LSFT(KC_4)),
-       KC_TAB,         KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   _x_,
-       LCTL_T(KC_BSPC),KC_A,         KC_R,   KC_S,   KC_T,   KC_D,
-       KC_LSPO,        KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   _x_,
-       KC_ESC,         _x_,          _x_,    KC_LEFT,KC_RIGHT,
+       KC_GRAVE,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   LCMD(LSFT(KC_4)),
+       KC_TAB,           KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   _x_,
+       LT(SYMB, KC_BSPC),KC_A,         KC_R,   KC_S,   KC_T,   KC_D,
+       KC_LSPO,          KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   KC_LCTRL,
+       KC_ESC,           _x_,          _x_,    KC_LEFT,KC_RIGHT,
 
                                                        _x_,  _x_,
                                                              KC_HOME,
