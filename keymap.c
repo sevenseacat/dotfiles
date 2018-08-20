@@ -2,11 +2,10 @@
 #include "debug.h"
 #include "action_layer.h"
 
-#define QWERTY 0 // Windows/Qwerty layer
-#define BASE   1 // Base layer
-#define SYMB   2 // Symbols
-#define UNIC1  3 // Unicode
-#define UNIC2  4 // Unicode
+#define BASE   0 // Base layer
+#define SYMB   1 // Symbols
+#define UNIC1  2 // Unicode
+#define UNIC2  3 // Unicode
 
 #define __    KC_TRNS // To make the keymaps more readable
 #define _x_   KC_NO   // Ditto
@@ -19,50 +18,6 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Qwerty/Windows
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Esc    |   1  |   2  |   3  |   4  |   5  |      |           |  L1  |   6  |   7  |   8  |   9  |   0  |        |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '"   |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |      |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |      |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      | Home |       | PgUp |      |      |
- *                                 | Space| Ctrl |------|       |------|      |Enter |
- *                                 |      |      | End  |       | PgDn |      |      |
- *                                 `--------------------'       `--------------------'
- */
-[QWERTY] = LAYOUT_ergodox(
-        KC_ESC,   KC_1,  KC_2,   KC_3,   KC_4,   KC_5,   _x_,
-        KC_TAB,   KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,   _x_,
-        KC_BSPC,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSFT,  KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   _x_,
-        _x_,      _x_,   _x_,    _x_,    _x_,
-
-                                                      _x_,    _x_,
-                                                              KC_HOME,
-                                               KC_SPC,KC_LCTL,KC_END,
-
-
-             TO(BASE), KC_6,   KC_7,  KC_8,   KC_9,   KC_0,      _x_,
-             _x_,      KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,      _x_,
-                       KC_H,   KC_J,  KC_K,   KC_L,   KC_SCLN,   KC_QUOT,
-             _x_,      KC_N,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
-                               _x_,   _x_,    _x_,    _x_,       _x_,
-
-             _x_,    _x_,
-             KC_PGUP,
-             KC_PGDN,_x_, KC_ENT
-    ),
-
 /* Keymap 1: Colemak
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
@@ -96,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                               KC_SPC,KC_LGUI,KC_END,
 
 
-            TO(QWERTY),  KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_EQUAL,
+            _x_,         KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_EQUAL,
             _x_,         KC_J,   KC_L,  KC_U,   KC_Y,   KC_SCOLON,        KC_BSLS,
                          KC_H,   KC_N,  KC_E,   KC_I,   KC_O,             LT(UNIC1, KC_QUOT),
             _x_,         KC_K,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,          KC_RSPC,
@@ -274,16 +229,12 @@ uint32_t layer_state_set_user(uint32_t state) {
 
   uint8_t layer = biton32(state);
   switch (layer) {
-      case QWERTY: // Blue
-        ergodox_right_led_3_on();
-        rgblight_setrgb(0, 0, 255);
-        break;
-      case BASE: // Purple
+      case SYMB: // Purple
         ergodox_right_led_1_on();
         ergodox_right_led_3_on();
         rgblight_setrgb(255, 0, 255);
         break;
-      case SYMB: // Cyan
+      case BASE: // Cyan
         ergodox_right_led_2_on();
         ergodox_right_led_3_on();
         rgblight_setrgb(0, 255, 255);
