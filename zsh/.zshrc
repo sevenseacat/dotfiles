@@ -8,7 +8,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle :compinstall filename '/Users/becky/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -21,7 +21,7 @@ source /usr/local/share/chruby/auto.sh
 
 # Set up the prompt
 fpath=(/usr/local/share/zsh-completions $fpath)
-fpath+="$HOME/Projects/personal/dotfiles"
+fpath+="$HOME/Projects/personal/dotfiles/zsh"
 
 autoload -Uz promptinit
 promptinit
@@ -36,6 +36,14 @@ alias dirsize="du -sh"
 alias gemnuke="gem uninstall -aIx"
 alias serve="python -m SimpleHTTPServer 8000"
 alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) | %(authorname) | (%(color:green)%(committerdate:relative)%(color:reset))| %(contents:subject) ' | column -t -s '|'"
+alias updatephoenix="mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez"
+alias ls="exa -hl --group-directories-first --git"
+alias did="vim +'normal Go' +'r!date' +'normal Go' ~/did.txt"
+
+alias gleam-test='bundle exec rspec --tag \~integration --tag \~js --tag \~slow'
+alias gleam-test-slow='bundle exec rspec --tag slow'
+# alias gleam-rubocop-changed='git status --porcelain | grep -v '^D' | cut -c4- | cut -d'>' -f2 | grep '.rb' | xargs bundle exec rubocop'
+alias gleam-precheckin='gleam-test && bundle exec rake rubocop_ratchet:check'
 
 export BUNDLER_EDITOR="sublime"
 export EDITOR="sublime"
@@ -46,6 +54,8 @@ export PATH=$HOME/bin:./bin:${PATH}
 export PATH="$HOME/.npm-packages/bin:$GOPATH/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 # Fixes https://bugs.erlang.org/browse/ERL-251
 export ERL_FLAGS="-run crypto"
@@ -61,9 +71,12 @@ export LESS_TERMCAP_ue=$'\e'"[0m"
 export LESS_TERMCAP_us=$'\e'"[1;32m"
 
 # Load functions after aliases so they can use them
-for file in $HOME/Projects/personal/dotfiles/functions/*; do
+for file in $HOME/Projects/personal/dotfiles/zsh/functions/*; do
   source "$file"
 done
+
+[ -f /Users/becky/.travis/travis.sh ] && source /Users/becky/.travis/travis.sh
+
 
 # In order for gpg to find gpg-agent, gpg-agent must be running,
 # and there must be an env variable pointing GPG to the gpg-agent socket.
