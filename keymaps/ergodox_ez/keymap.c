@@ -14,7 +14,8 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // Can always be here
   TROLL,
   TADA,
-  DANCER
+  DANCER,
+  TABLEFLIP
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                               KC_SPC,KC_LGUI,KC_END,
 
 
-            _x_,         KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_EQUAL,
+            TABLEFLIP,   KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_EQUAL,
             _x_,         KC_J,   KC_L,  KC_U,   KC_Y,   KC_SCOLON,        KC_BSLS,
                          KC_H,   KC_N,  KC_E,   KC_I,   KC_O,             LT(UNIC1, KC_QUOT),
             _x_,         KC_K,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,          KC_RSPC,
@@ -200,6 +201,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               return false;
           case DANCER:
               SEND_STRING(SS_LALT("D83D+DC83"));
+              return false;
+          case TABLEFLIP:
+              SEND_STRING("(");
+              process_unicode((0x256F | QK_UNICODE), record); // Arm
+              process_unicode((0x00B0 | QK_UNICODE), record); // Eye
+              process_unicode((0x25A1 | QK_UNICODE), record); // Mouth
+              process_unicode((0x00B0 | QK_UNICODE), record); // Eye
+              SEND_STRING(")");
+              process_unicode((0x256F | QK_UNICODE), record); // Arm
+              SEND_STRING(" ");
+              process_unicode((0x0361 | QK_UNICODE), record); // Flippy
+              SEND_STRING(" ");
+              process_unicode((0x253B | QK_UNICODE), record); // Table
+              process_unicode((0x2501 | QK_UNICODE), record); // Table
+              process_unicode((0x253B | QK_UNICODE), record); // Table
               return false;
       }
   }
