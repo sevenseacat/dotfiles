@@ -11,11 +11,15 @@ function git_info
 	end
 end
 
+function time
+	echo (set_color cyan) :(set_color blue)(date "+%l:%M%p")(set_color normal)
+end
+
 function fish_prompt
 	test $SSH_TTY
     and printf (set_color red)$USER(set_color brwhite)'@'(set_color yellow)(prompt_hostname)' '
     test "$USER" = 'root'
     and echo (set_color red)"#"
 
-    echo -n \n(set_color cyan).: (set_color green)(prompt_pwd)(git_info) (set_color cyan):.\n\$' '
+    echo -n \n(set_color cyan).: (set_color green)(prompt_pwd)(git_info)(time) (set_color cyan):.\n\$' '
 end
