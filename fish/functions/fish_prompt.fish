@@ -12,7 +12,7 @@ function git_info
 end
 
 function time
-	echo (set_color cyan) :(set_color blue)(date "+%l:%M%p")(set_color normal)
+	echo (set_color cyan) :(set_color blue) (string trim (date "+%l:%M%p"))(set_color normal)
 end
 
 function fish_prompt
